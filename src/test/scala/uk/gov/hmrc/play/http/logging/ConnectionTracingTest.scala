@@ -140,6 +140,8 @@ class ConnectionTracingTest extends WordSpecLike with Matchers with MockitoSugar
   }
 
   private class StubLoggingDetails extends LoggingDetails {
+    override def clientId: Option[ClientId] = Some(ClientId("cId"))
+
     override def sessionId: Option[SessionId] = Some(SessionId("sId"))
 
     override def forwarded: Option[ForwardedFor] = None

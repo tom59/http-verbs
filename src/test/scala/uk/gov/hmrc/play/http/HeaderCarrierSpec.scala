@@ -88,7 +88,11 @@ class HeaderCarrierSpec extends WordSpecLike with Matchers {
         fromHeadersAndSession(headers(), Some(Session(Map(SessionKeys.authToken -> "let me in!")))).authorization shouldBe Some(Authorization("let me in!"))
       }
 
-      "find the requestId from the headers" in {
+      "find the clientId from the headers" in {
+        fromHeadersAndSession(headers(HeaderNames.xClientId -> "12345"), Some(Session())).requestId shouldBe Some(RequestId("12345"))
+      }
+
+     "find the requestId from the headers" in {
         fromHeadersAndSession(headers(HeaderNames.xRequestId -> "18476239874162"), Some(Session())).requestId shouldBe Some(RequestId("18476239874162"))
       }
 

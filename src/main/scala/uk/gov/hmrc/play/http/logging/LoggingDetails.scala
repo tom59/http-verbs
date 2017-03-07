@@ -22,6 +22,8 @@ import scala.util.Random
 
 case class Authorization(value: String) extends AnyVal
 
+case class ClientId(value: String) extends AnyVal
+
 case class SessionId(value: String) extends AnyVal
 
 case class RequestId(value: String) extends AnyVal
@@ -42,6 +44,8 @@ case class ForwardedFor(value: String) extends AnyVal
 
 trait LoggingDetails {
 
+  def clientId: Option[ClientId]
+
   def sessionId: Option[SessionId]
 
   def requestId: Option[RequestId]
@@ -55,6 +59,7 @@ trait LoggingDetails {
   def age: Long
 
   lazy val data = Map[String, Option[String]](
+    (HeaderNames.xClientId, clientId.map(_.value)),
     (HeaderNames.xRequestId, requestId.map(_.value)),
     (HeaderNames.xSessionId, sessionId.map(_.value)),
     (HeaderNames.authorisation, authorization.map(_.value)),

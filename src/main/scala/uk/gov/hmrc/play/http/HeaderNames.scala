@@ -29,6 +29,7 @@ object HeaderNames {
    */
 
   val authorisation = AUTHORIZATION
+  val xClientId = "X-Client-ID"
   val xForwardedFor = "x-forwarded-for"
   val xRequestId =  "X-Request-ID"
   val xRequestTimestamp = "X-Request-Timestamp"
@@ -47,6 +48,7 @@ object HeaderNames {
   val explicitlyIncludedHeaders = Seq(
     authorisation,
     xForwardedFor,
+    xClientId,
     xRequestId,
     xRequestTimestamp,
     xSessionId,

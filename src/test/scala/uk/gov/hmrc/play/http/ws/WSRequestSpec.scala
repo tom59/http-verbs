@@ -20,7 +20,7 @@ import org.scalatest.{Matchers, WordSpecLike}
 import play.api.test.FakeApplication
 import play.api.test.Helpers._
 import uk.gov.hmrc.play.http.{Token, HeaderCarrier}
-import uk.gov.hmrc.play.http.logging.{Authorization, ForwardedFor, RequestId, SessionId}
+import uk.gov.hmrc.play.http.logging._
 
 class WSRequestSpec extends WordSpecLike with Matchers {
 
@@ -31,6 +31,7 @@ class WSRequestSpec extends WordSpecLike with Matchers {
 
       implicit val hc = HeaderCarrier(
         authorization = Some(Authorization("auth")),
+        clientId = Some(ClientId("clientId")),
         sessionId = Some(SessionId("session")),
         requestId = Some(RequestId("request")),
         token = Some(Token("token")),
